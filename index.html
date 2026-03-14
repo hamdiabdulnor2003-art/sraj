@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>اتحاد طلبة قسم الهندسة الكيميائية — جامعة بنغازي</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f4f0;--bg2:#edeae4;--bg3:#e3dfd7;
+  --white:#ffffff;
+  --blue:#1b3d5f;--blue2:#2a5f8f;--blue3:#3c7bbf;--blue4:#d6e8f7;
+  --brown:#7a4f2d;--brown2:#a06538;--brown3:#c98a52;--brown4:#f2dcc8;
+  --text:#1a2535;--text2:#3d5066;--text3:#7a8fa8;
+  --border:rgba(27,61,95,.11);
+  --sh:0 3px 20px rgba(27,61,95,.08);
+  --sh2:0 10px 36px rgba(27,61,95,.13);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg2)}::-webkit-scrollbar-thumb{background:var(--blue2);border-radius:3px}
+#c{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.45}
+nav{position:fixed;top:0;inset-inline:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:15px 5%;transition:all .35s}
+nav.on{background:rgba(255,255,255,.95);backdrop-filter:blur(18px);border-bottom:1px solid var(--border);box-shadow:0 2px 16px rgba(27,61,95,.07)}
+.nlogo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.nlogo-emblem{width:44px;height:44px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:900;color:var(--white);flex-shrink:0;box-shadow:0 3px 10px rgba(27,61,95,.25)}
+.nlogo-ar{font-size:.9rem;font-weight:700;color:var(--blue);line-height:1.3}
+.nlogo-en{font-size:.62rem;color:var(--text3)}
+.nlinks{display:flex;gap:22px;list-style:none}
+.nlinks a{font-size:.82rem;font-weight:600;color:var(--text2);text-decoration:none;transition:color .2s;position:relative}
+.nlinks a::after{content:'';position:absolute;bottom:-3px;right:0;left:0;height:2px;background:var(--brown2);transform:scaleX(0);transform-origin:right;transition:transform .3s}
+.nlinks a:hover{color:var(--blue)}.nlinks a:hover::after{transform:scaleX(1);transform-origin:left}
+.ntg{padding:8px 18px;border-radius:5px;background:var(--blue);color:var(--white);font-size:.78rem;font-weight:700;text-decoration:none;transition:all .2s}
+.ntg:hover{background:var(--blue2);transform:translateY(-1px)}
+/* HERO */
+#hero{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:110px 5% 70px;background:linear-gradient(155deg,#f8f6f1 0%,#edf3fa 60%,#f4efe8 100%);overflow:hidden}
+#hero::before{content:'';position:absolute;width:600px;height:600px;top:-200px;right:-180px;border-radius:50%;background:radial-gradient(circle,rgba(44,95,143,.07),transparent 70%);pointer-events:none}
+#hero::after{content:'';position:absolute;width:450px;height:450px;bottom:-150px;left:-120px;border-radius:50%;background:radial-gradient(circle,rgba(122,79,45,.07),transparent 70%);pointer-events:none}
+.h-badge{display:inline-flex;align-items:center;gap:8px;background:var(--blue4);border:1px solid rgba(60,123,191,.22);padding:6px 20px;border-radius:30px;font-size:.73rem;font-weight:600;color:var(--blue2);margin-bottom:28px;opacity:0;animation:fu .7s .15s forwards}
+.h-badge-dot{width:7px;height:7px;border-radius:50%;background:var(--blue3);flex-shrink:0}
+.h-title{font-size:clamp(2.4rem,7.5vw,5.8rem);font-weight:900;line-height:1.07;color:var(--blue);opacity:0;animation:fu .7s .3s forwards}
+.h-title em{font-style:normal;background:linear-gradient(135deg,var(--brown),var(--brown2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.h-sub{display:block;font-size:.42em;font-weight:400;color:var(--text3);-webkit-text-fill-color:var(--text3);letter-spacing:2px;margin-top:10px}
+.h-desc{max-width:580px;margin:24px auto 0;font-size:clamp(.9rem,1.8vw,1.05rem);line-height:2.1;color:var(--text2);opacity:0;animation:fu .7s .45s forwards}
+.h-stats{display:flex;gap:0;margin-top:44px;opacity:0;animation:fu .7s .6s forwards;background:var(--white);border:1px solid var(--border);border-radius:14px;box-shadow:var(--sh);overflow:hidden;flex-wrap:wrap}
+.hs{padding:18px 34px;text-align:center;border-left:1px solid var(--border);flex:1;min-width:100px}
+.hs:last-child{border-left:none}
+.hs-n{font-size:2rem;font-weight:900;color:var(--blue);line-height:1}
+.hs-l{font-size:.7rem;color:var(--text3);letter-spacing:1px;margin-top:4px;font-weight:600}
+.h-btns{display:flex;gap:12px;margin-top:36px;opacity:0;animation:fu .7s .75s forwards;flex-wrap:wrap;justify-content:center}
+.btn-p{padding:13px 28px;border-radius:6px;background:var(--blue);color:var(--white);font-size:.85rem;font-weight:700;text-decoration:none;transition:all .25s;box-shadow:0 4px 14px rgba(27,61,95,.24)}
+.btn-p:hover{background:var(--blue2);transform:translateY(-2px)}
+.btn-s{padding:13px 28px;border-radius:6px;border:1.5px solid var(--brown2);color:var(--brown);font-size:.85rem;font-weight:700;text-decoration:none;transition:all .25s}
+.btn-s:hover{background:var(--brown4);transform:translateY(-2px)}
+.scroll-hint{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:5px;opacity:0;animation:fi 1s 1.3s forwards}
+.scroll-hint span{font-size:.6rem;letter-spacing:2px;color:var(--text3)}
+.sw{width:18px;height:27px;border:1.5px solid rgba(27,61,95,.2);border-radius:9px;display:flex;align-items:flex-start;justify-content:center;padding-top:5px}
+.sb{width:4px;height:5px;background:var(--blue2);border-radius:2px;animation:sd 1.8s infinite}
+@keyframes sd{0%{transform:translateY(0);opacity:1}100%{transform:translateY(10px);opacity:0}}
+/* SECTIONS */
+section{position:relative;z-index:1;padding:84px 5%}
+.even{background:var(--white)}.odd{background:var(--bg)}.alt{background:var(--bg2)}
+.sec-head{text-align:center;margin-bottom:52px}
+.sec-tag{font-size:.68rem;font-weight:700;letter-spacing:4px;color:var(--brown2);margin-bottom:10px}
+.sec-title{font-size:clamp(1.65rem,3.8vw,2.55rem);font-weight:900;color:var(--blue);line-height:1.2}
+.sec-sub{font-size:.88rem;color:var(--text3);margin-top:6px}
+.sep{width:48px;height:3px;margin:14px auto;background:linear-gradient(90deg,var(--brown),var(--brown3));border-radius:2px}
+/* ABOUT */
+.about-wrap{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:880px;margin:0 auto}
+.a-card{padding:26px 24px;border-radius:14px;background:var(--white);border:1px solid var(--border);box-shadow:var(--sh);opacity:0;transform:translateY(22px);transition:all .5s;position:relative;overflow:hidden}
+.a-card.v{opacity:1;transform:translateY(0)}
+.a-card::before{content:'';position:absolute;top:0;right:0;width:4px;height:100%;background:var(--blue);opacity:0;transition:opacity .3s}
+.a-card:hover{box-shadow:var(--sh2);transform:translateY(-4px)}.a-card:hover::before{opacity:1}
+.a-lbl{font-size:.66rem;font-weight:700;letter-spacing:3px;color:var(--brown2);margin-bottom:9px}
+.a-text{font-size:.92rem;line-height:2;color:var(--text2)}
+/* SERVE */
+.serve-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:1000px;margin:0 auto}
+.srv-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:26px 20px;text-align:center;box-shadow:var(--sh);transition:all .3s;opacity:0;transform:translateY(22px)}
+.srv-card.v{opacity:1;transform:translateY(0)}.srv-card:hover{box-shadow:var(--sh2);transform:translateY(-5px)}
+.srv-icon{font-size:2.2rem;margin-bottom:12px}
+.srv-title{font-size:1rem;font-weight:700;color:var(--blue);margin-bottom:6px}
+.srv-desc{font-size:.8rem;color:var(--text2);line-height:1.8}
+/* PROGRAMS */
+.prog-tabs{display:flex;gap:8px;justify-content:center;margin-bottom:38px;flex-wrap:wrap}
+.ptab{padding:8px 20px;border-radius:6px;border:1.5px solid var(--border);background:var(--white);font-size:.82rem;font-weight:700;color:var(--text2);cursor:pointer;transition:all .25s}
+.ptab:hover,.ptab.on{background:var(--blue);border-color:var(--blue);color:var(--white)}
+.prog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:16px;max-width:1100px;margin:0 auto}
+.pg-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:20px 18px;box-shadow:var(--sh);transition:all .3s;opacity:0;transform:translateY(16px)}
+.pg-card.v{opacity:1;transform:translateY(0)}.pg-card:hover{box-shadow:var(--sh2);transform:translateY(-5px)}
+.pg-icon{font-size:1.6rem;margin-bottom:10px}
+.pg-cat{font-size:.62rem;font-weight:700;letter-spacing:2px;color:var(--brown2);margin-bottom:5px}
+.pg-title{font-size:.95rem;font-weight:700;color:var(--blue);margin-bottom:6px}
+.pg-desc{font-size:.79rem;color:var(--text2);line-height:1.78}
+/* PLAN */
+.plan-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:1060px;margin:0 auto}
+.pl-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:24px 20px;box-shadow:var(--sh);position:relative;overflow:hidden;opacity:0;transform:translateY(22px);transition:all .5s}
+.pl-card.v{opacity:1;transform:translateY(0)}.pl-card:hover{box-shadow:var(--sh2);transform:translateY(-5px)}
+.pl-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--blue3));transform:scaleX(0);transform-origin:right;transition:transform .3s}
+.pl-card:hover::after{transform:scaleX(1);transform-origin:left}
+.pl-num{position:absolute;top:14px;left:16px;font-size:2.8rem;font-weight:900;color:var(--blue4);line-height:1}
+.pl-icon{font-size:1.5rem;margin-bottom:9px}
+.pl-name{font-size:1rem;font-weight:700;color:var(--blue);margin-bottom:4px}
+.pl-desc{font-size:.8rem;color:var(--text2);line-height:1.75}
+.pl-meta{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.pl-tag{font-size:.65rem;font-weight:700;padding:3px 10px;border-radius:4px}
+.pl-tag.d{background:var(--blue4);color:var(--blue2)}.pl-tag.b{background:var(--brown4);color:var(--brown)}
+/* BUDGET */
+.bwrap{display:grid;grid-template-columns:1.3fr 1fr;gap:46px;max-width:980px;margin:0 auto;align-items:start}
+.b-rows{display:flex;flex-direction:column;gap:14px}
+.b-row{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:13px 17px;display:flex;align-items:center;gap:13px;opacity:0;transform:translateX(-16px);transition:all .5s}
+.b-row.v{opacity:1;transform:translateX(0)}.b-row:hover{box-shadow:var(--sh)}
+.b-lbl{font-size:.82rem;font-weight:600;color:var(--text);min-width:130px;text-align:right}
+.b-bar{flex:1;background:rgba(27,61,95,.08);border-radius:4px;height:7px;overflow:hidden}
+.b-fill{height:100%;border-radius:4px;width:0;transition:width 1.4s cubic-bezier(.22,1,.36,1)}
+.b-amt{font-size:.82rem;font-weight:700;color:var(--blue);min-width:80px}
+.b-tots{display:flex;flex-direction:column;gap:13px}
+.b-tot{padding:19px 21px;border-radius:12px;opacity:0;transform:translateX(16px);transition:all .5s}
+.b-tot.v{opacity:1;transform:translateX(0)}
+.b-tot.main{background:linear-gradient(135deg,var(--blue),var(--blue2));color:var(--white)}
+.b-tot.sec{background:var(--bg);border:1px solid var(--border)}
+.b-tot.grn{background:linear-gradient(135deg,#edf7f2,#d4f0e3);border:1px solid rgba(22,160,100,.2)}
+.b-tlbl{font-size:.67rem;font-weight:700;letter-spacing:1.5px;opacity:.7;margin-bottom:5px}
+.b-tot.main .b-tlbl{color:rgba(255,255,255,.8)}
+.b-tval{font-size:1.55rem;font-weight:900;line-height:1}
+.b-tot.main .b-tval{color:var(--white)}.b-tot.sec .b-tval{color:var(--blue)}.b-tot.grn .b-tval{color:#16a064}
+.b-tnote{font-size:.72rem;margin-top:5px;opacity:.55}
+/* KPIs */
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:15px;max-width:1000px;margin:0 auto}
+.kp{background:var(--white);border:1px solid var(--border);border-radius:13px;padding:24px 15px;text-align:center;box-shadow:var(--sh);transition:all .3s;opacity:0;transform:scale(.93)}
+.kp.v{opacity:1;transform:scale(1)}.kp:hover{box-shadow:var(--sh2);transform:translateY(-5px)}
+.kp-icon{font-size:1.8rem;margin-bottom:9px}
+.kp-num{font-size:1.85rem;font-weight:900;color:var(--blue)}
+.kp-lbl{font-size:.8rem;font-weight:700;color:var(--text);margin-top:7px}
+.kp-sub{font-size:.65rem;color:var(--text3);margin-top:2px}
+/* LEADERSHIP */
+.lead-card{max-width:520px;margin:0 auto;background:var(--white);border:1px solid var(--border);border-radius:16px;padding:32px 28px;box-shadow:var(--sh);text-align:center}
+.lead-ring{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--blue2));display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:1.8rem;color:var(--white);box-shadow:0 6px 20px rgba(27,61,95,.22)}
+.lead-name{font-size:1.25rem;font-weight:900;color:var(--blue);margin-bottom:4px}
+.lead-role{font-size:.82rem;color:var(--brown2);font-weight:700;letter-spacing:.5px;margin-bottom:16px}
+.lead-bio{font-size:.88rem;line-height:1.95;color:var(--text2);margin-bottom:20px}
+.lead-contact{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border-radius:6px;background:var(--blue4);border:1px solid rgba(27,61,95,.15);color:var(--blue);font-size:.8rem;font-weight:700;text-decoration:none;transition:all .25s}
+.lead-contact:hover{background:var(--blue);color:var(--white)}
+/* CTA */
+#cta{background:linear-gradient(135deg,var(--blue) 0%,var(--blue2) 100%);text-align:center;color:var(--white)}
+#cta .sec-tag{color:rgba(255,255,255,.6)}#cta .sec-title{color:var(--white)}
+#cta .sep{background:linear-gradient(90deg,var(--brown3),#f5d47a)}
+.cta-desc{font-size:.97rem;color:rgba(255,255,255,.78);max-width:480px;margin:0 auto 34px;line-height:2}
+.cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn-w{padding:12px 28px;border-radius:6px;background:var(--white);color:var(--blue);font-size:.83rem;font-weight:700;text-decoration:none;transition:all .25s}
+.btn-w:hover{background:var(--bg);transform:translateY(-2px)}
+.btn-ow{padding:12px 28px;border-radius:6px;border:1.5px solid rgba(255,255,255,.45);color:var(--white);font-size:.83rem;font-weight:700;text-decoration:none;transition:all .25s;background:transparent}
+.btn-ow:hover{background:rgba(255,255,255,.1);border-color:var(--white)}
+/* FOOTER */
+footer{background:var(--blue);padding:26px 5%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.ft-logo{font-size:1.05rem;font-weight:900;color:var(--white)}
+.ft-sub{font-size:.72rem;color:rgba(255,255,255,.45);margin-top:2px}
+.ft-handle{font-size:.8rem;color:var(--brown3);font-weight:700}
+@keyframes fu{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fi{from{opacity:0}to{opacity:1}}
+@media(max-width:768px){.nlinks,.ntg{display:none}.about-wrap{grid-template-columns:1fr}.serve-grid{grid-template-columns:1fr 1fr}.plan-grid{grid-template-columns:1fr 1fr}.bwrap{grid-template-columns:1fr}footer{flex-direction:column;text-align:center}}
+@media(max-width:520px){.serve-grid,.plan-grid{grid-template-columns:1fr}.h-stats{flex-direction:column}}
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<nav id="nav">
+  <a href="#" class="nlogo">
+    <div class="nlogo-emblem">ا·ط</div>
+    <div>
+      <div class="nlogo-ar">اتحاد طلبة الهندسة الكيميائية</div>
+      <div class="nlogo-en">Chemical Engineering Student Union · UoB</div>
+    </div>
+  </a>
+  <ul class="nlinks">
+    <li><a href="#about">عن الاتحاد</a></li>
+    <li><a href="#serve">من نخدم؟</a></li>
+    <li><a href="#programs">البرامج</a></li>
+    <li><a href="#plan">خطة العمل</a></li>
+    <li><a href="#budget">الميزانية</a></li>
+    <li><a href="#leadership">القيادة</a></li>
+  </ul>
+  <a href="https://t.me/chemclub_uob" class="ntg" target="_blank">📱 انضم إلينا</a>
+</nav>
+
+<section id="hero">
+  <div class="h-badge"><div class="h-badge-dot"></div><span>جامعة بنغازي</span><span style="opacity:.35">·</span><span>قسم الهندسة الكيميائية</span><span style="opacity:.35">·</span><span>العام الدراسي ٢٠٢٥–٢٠٢٦</span></div>
+  <h1 class="h-title">اتحاد طلبة<br>قسم <em>الهندسة الكيميائية</em><span class="h-sub">جامعة بنغازي — كلية الهندسة</span></h1>
+  <p class="h-desc">الجهة الرسمية التي تمثّل جميع طلاب القسم وتُوحّد نشاط نواديه وفعالياته<br>لبناء بيئة أكاديمية ومهنية متكاملة تخدم كل طالب في الكلية</p>
+  <div class="h-stats">
+    <div class="hs"><div class="hs-n" data-count="4">٠</div><div class="hs-l">نوادٍ وفرق</div></div>
+    <div class="hs"><div class="hs-n" data-count="22">٠</div><div class="hs-l">برنامجًا وفعالية</div></div>
+    <div class="hs"><div class="hs-n" data-count="365">٠</div><div class="hs-l">يومًا من العمل</div></div>
+    <div class="hs"><div class="hs-n" data-count="300">٠</div><div class="hs-l">طالب مستفيد</div></div>
+  </div>
+  <div class="h-btns">
+    <a href="#programs" class="btn-p">استعرض البرامج والفعاليات</a>
+    <a href="#leadership" class="btn-s">تواصل مع القيادة</a>
+  </div>
+  <div class="scroll-hint"><span>تمرير للأسفل</span><div class="sw"><div class="sb"></div></div></div>
+</section>
+
+<section id="about" class="even">
+  <div class="sec-head">
+    <div class="sec-tag">من نحن</div>
+    <h2 class="sec-title">اتحاد طلبة القسم — الهوية والدور</h2>
+    <div class="sep"></div>
+  </div>
+  <div class="about-wrap">
+    <div class="a-card"><div class="a-lbl">رؤيتنا</div><p class="a-text">بناء مجتمع طلابي متماسك ومحترف في قسم الهندسة الكيميائية، يُمكّن كل طالب من التميّز الأكاديمي والمهني ويُجسّر الهوة الحقيقية بينه وبين عالم الصناعة والعمل.</p></div>
+    <div class="a-card"><div class="a-lbl">رسالتنا</div><p class="a-text">تمثيل جميع طلاب القسم بكل تخصصاتهم ومستوياتهم، وتنسيق عمل النوادي الطلابية، وتنظيم البرامج والفعاليات التي تُثري التجربة الجامعية وتُعدّ الطالب لسوق العمل.</p></div>
+    <div class="a-card"><div class="a-lbl">دورنا</div><p class="a-text">الاتحاد هو المظلة الرسمية التي تجمع تحتها جميع الأنشطة الطلابية في القسم — لا يعمل لصالح ناد بعينه، بل يخطط وينسّق ويُشرف على ما يخدم الجميع دون استثناء.</p></div>
+    <div class="a-card"><div class="a-lbl">منهجنا في العمل</div><p class="a-text">الجودة قبل الكمية. كل فعالية تمر بمرحلة تخطيط دقيقة، وتُقاس بمعايير واضحة، وتُوثَّق بشكل كامل لضمان الاستمرارية وبناء تجربة يرثها الجيل القادم من الطلاب.</p></div>
+  </div>
+</section>
+
+<section id="serve" class="odd">
+  <div class="sec-head">
+    <div class="sec-tag">الفئات المستفيدة</div>
+    <h2 class="sec-title">الاتحاد يخدم الجميع</h2>
+    <div class="sec-sub">كل طالب في القسم هو جزء من هذا الاتحاد</div>
+    <div class="sep"></div>
+  </div>
+  <div class="serve-grid">
+    <div class="srv-card"><div class="srv-icon">🎓</div><div class="srv-title">طلاب السنوات الأولى</div><div class="srv-desc">برامج الاستقبال والتوجيه وجلسات التعارف والدعم الأكاديمي التي تُسهّل انتقالهم إلى الحياة الجامعية بثقة.</div></div>
+    <div class="srv-card"><div class="srv-icon">⚙️</div><div class="srv-title">طلاب المراحل المتقدمة</div><div class="srv-desc">الورش التقنية المتخصصة والزيارات الميدانية وبرامج المحاكاة الصناعية التي تُعمّق كفاءتهم الهندسية.</div></div>
+    <div class="srv-card"><div class="srv-icon">🏛️</div><div class="srv-title">طلاب التخرج</div><div class="srv-desc">معرض مشاريع التخرج وقمة المسار المهني وجلسات التواصل مع الصناعة التي تُمهّد طريقهم لسوق العمل.</div></div>
+    <div class="srv-card"><div class="srv-icon">🏆</div><div class="srv-title">النوادي الطلابية</div><div class="srv-desc">الدعم الإداري واللوجستي والتنسيق بين النوادي وتوفير الموارد والتدريب لأعضاء كل ناد في القسم.</div></div>
+    <div class="srv-card"><div class="srv-icon">🤝</div><div class="srv-title">الشراكات الصناعية</div><div class="srv-desc">التواصل مع الشركات والمنشآت الصناعية لتوفير فرص الزيارات الميدانية والرعاية والتدريب الميداني.</div></div>
+    <div class="srv-card"><div class="srv-icon">🗣️</div><div class="srv-title">الحوار مع الإدارة</div><div class="srv-desc">تمثيل الطلاب أمام إدارة القسم والكلية ورفع مقترحاتهم وهمومهم الأكاديمية والإدارية بصوت موحّد.</div></div>
+  </div>
+</section>
+
+<section id="programs" class="alt">
+  <div class="sec-head">
+    <div class="sec-tag">البرامج والفعاليات</div>
+    <h2 class="sec-title">٢٢ برنامجًا وفعالية — ٥ محاور</h2>
+    <div class="sec-sub">مصمَّمة لخدمة جميع طلاب القسم طوال العام الدراسي</div>
+    <div class="sep"></div>
+  </div>
+  <div class="prog-tabs">
+    <button class="ptab on" data-c="all">الكل</button>
+    <button class="ptab" data-c="union">أنشطة الاتحاد</button>
+    <button class="ptab" data-c="tech">برامج تقنية</button>
+    <button class="ptab" data-c="dev">تطوير ذاتي</button>
+    <button class="ptab" data-c="field">زيارات ميدانية</button>
+    <button class="ptab" data-c="flagship">الفعاليات الكبرى</button>
+  </div>
+  <div class="prog-grid" id="pg">
+    <div class="pg-card" data-c="union"><div class="pg-icon">🎉</div><div class="pg-cat">نشاط اتحادي</div><div class="pg-title">منتدى بداية الفصل</div><div class="pg-desc">حفل الاستقبال الرسمي للعام الدراسي — تعريف بخدمات الاتحاد وتسجيل الطلاب الجدد ومسابقات ترفيهية بجوائز.</div></div>
+    <div class="pg-card" data-c="union"><div class="pg-icon">🏗️</div><div class="pg-cat">نشاط اتحادي</div><div class="pg-title">يوم الهندسة</div><div class="pg-desc">احتفال سنوي يجمع طلاب جميع تخصصات الهندسة — معارض ومسابقات تقنية وتصوير احترافي للقسم.</div></div>
+    <div class="pg-card" data-c="union"><div class="pg-icon">🗣️</div><div class="pg-cat">نشاط اتحادي</div><div class="pg-title">برنامج صوت الطالب</div><div class="pg-desc">لقاء شهري مفتوح بين الطلاب وقيادة القسم لمناقشة الهموم الأكاديمية والإدارية وإيجاد حلول مشتركة.</div></div>
+    <div class="pg-card" data-c="union"><div class="pg-icon">🎮</div><div class="pg-cat">نشاط اتحادي</div><div class="pg-title">بطولة الألعاب الهندسية</div><div class="pg-desc">بطولة ترفيهية تجمع طلاب القسم — شطرنج ومسابقات ذكاء وألعاب إلكترونية لبناء روح الفريق والانتماء.</div></div>
+    <div class="pg-card" data-c="union"><div class="pg-icon">⏱️</div><div class="pg-cat">نشاط اتحادي</div><div class="pg-title">حملة إتقان الوقت</div><div class="pg-desc">سلسلة ورش عمل عملية حول إدارة الوقت والتخطيط الأكاديمي والتوازن بين الدراسة والنشاط الطلابي.</div></div>
+    <div class="pg-card" data-c="tech"><div class="pg-icon">⚗️</div><div class="pg-cat">برنامج تقني</div><div class="pg-title">ورشة عمليات الفصل</div><div class="pg-desc">ورشة تطبيقية تغطي تقنيات التقطير والامتصاص والاستخلاص مع تجارب عملية وحسابات تصميمية حقيقية.</div></div>
+    <div class="pg-card" data-c="tech"><div class="pg-icon">⛑️</div><div class="pg-cat">برنامج تقني</div><div class="pg-title">السلامة الصناعية الأساسية</div><div class="pg-desc">تدريب شامل على معدات الحماية والمخاطر الكيميائية وإجراءات الطوارئ واشتراطات السلامة المهنية.</div></div>
+    <div class="pg-card" data-c="tech"><div class="pg-icon">💻</div><div class="pg-cat">برنامج تقني</div><div class="pg-title">معسكر المحاكاة الصناعية</div><div class="pg-desc">تدريب مكثف على برامج محاكاة العمليات الكيميائية المستخدمة في الصناعة مع حالات دراسية حقيقية.</div></div>
+    <div class="pg-card" data-c="tech"><div class="pg-icon">🔬</div><div class="pg-cat">برنامج تقني</div><div class="pg-title">الهندسة في الواقع</div><div class="pg-desc">عروض تفاعلية تُجسّد المفاهيم الهندسية بصريًا — انتقال الحرارة وجريان الموائع وانتقال الكتلة وتوازن الأطوار.</div></div>
+    <div class="pg-card" data-c="dev"><div class="pg-icon">📋</div><div class="pg-cat">تطوير ذاتي</div><div class="pg-title">إدارة الفعاليات</div><div class="pg-desc">ورشة تدريبية لأعضاء النوادي حول التخطيط والتنظيم وإدارة الميزانية وتقييم الفعاليات بشكل احترافي.</div></div>
+    <div class="pg-card" data-c="dev"><div class="pg-icon">🎨</div><div class="pg-cat">تطوير ذاتي</div><div class="pg-title">الهوية والتسويق للنوادي</div><div class="pg-desc">بناء الهوية البصرية وإنشاء المحتوى الرقمي وإدارة حسابات التواصل الاجتماعي بشكل احترافي ومؤثر.</div></div>
+    <div class="pg-card" data-c="dev"><div class="pg-icon">🧭</div><div class="pg-cat">تطوير ذاتي</div><div class="pg-title">مهارات القيادة</div><div class="pg-desc">تدريب مكثف لقادة النوادي ومسؤولي الاتحاد على أساليب القيادة وبناء الفرق واتخاذ القرار تحت الضغط.</div></div>
+    <div class="pg-card" data-c="dev"><div class="pg-icon">🗣️</div><div class="pg-cat">تطوير ذاتي</div><div class="pg-title">فن التواصل المهني</div><div class="pg-desc">مهارات التحدث أمام الجمهور والتواصل مع أعضاء هيئة التدريس والشركات وكتابة المراسلات الرسمية.</div></div>
+    <div class="pg-card" data-c="dev"><div class="pg-icon">📝</div><div class="pg-cat">تطوير ذاتي</div><div class="pg-title">الكتابة التقنية والتقارير</div><div class="pg-desc">معايير كتابة التقارير الهندسية وتوثيق المشاريع وإعداد المقترحات والمراسلات الرسمية الداخلية والخارجية.</div></div>
+    <div class="pg-card" data-c="field"><div class="pg-icon">🏗️</div><div class="pg-cat">زيارة ميدانية</div><div class="pg-title">مصنع الأسفلت</div><div class="pg-desc">مشاهدة عمليات الإنتاج والخلط ومراقبة الجودة والتعرف على إجراءات السلامة في بيئة صناعية حقيقية.</div></div>
+    <div class="pg-card" data-c="field"><div class="pg-icon">🛢️</div><div class="pg-cat">زيارة ميدانية</div><div class="pg-title">شركة الجوف للنفط</div><div class="pg-desc">نظرة على عمليات الحفر ومعالجة النفط وأنظمة السلامة والإدارة البيئية في قطاع النفط والغاز.</div></div>
+    <div class="pg-card" data-c="field"><div class="pg-icon">💧</div><div class="pg-cat">زيارة ميدانية</div><div class="pg-title">محطة تحلية المياه</div><div class="pg-desc">الاطلاع على تقنيات التحلية المختلفة وأنظمة استرداد الطاقة ومراقبة جودة المياه على نطاق صناعي.</div></div>
+    <div class="pg-card" data-c="field"><div class="pg-icon">🧪</div><div class="pg-cat">زيارة ميدانية</div><div class="pg-title">منشأة إنتاج البوليمر</div><div class="pg-desc">عمليات البلمرة وأنواع المفاعلات ومراقبة الجودة والعمليات الصناعية على نطاق الإنتاج الكامل.</div></div>
+    <div class="pg-card" data-c="flagship"><div class="pg-icon">🏆</div><div class="pg-cat">فعالية كبرى</div><div class="pg-title">مسابقة الابتكار الهندسي</div><div class="pg-desc">فرق من ٣ إلى ٥ طلاب تتنافس لحل تحديات صناعية حقيقية وتعرض حلولها أمام لجنة من خبراء القطاع.</div></div>
+    <div class="pg-card" data-c="flagship"><div class="pg-icon">🔭</div><div class="pg-cat">فعالية كبرى</div><div class="pg-title">يوم البحث العلمي</div><div class="pg-desc">معرض سنوي لمشاريع التخرج والبحوث الجامعية مع جلسات نقاش وجوائز للأعمال البحثية المتميزة.</div></div>
+    <div class="pg-card" data-c="flagship"><div class="pg-icon">🎯</div><div class="pg-cat">فعالية كبرى</div><div class="pg-title">قمة المسار المهني</div><div class="pg-desc">مؤتمر شامل للتطوير المهني: إعداد السيرة الذاتية والتحضير للمقابلات ومسارات التوظيف وشبكة الشركات.</div></div>
+    <div class="pg-card" data-c="flagship"><div class="pg-icon">🎤</div><div class="pg-cat">فعالية كبرى</div><div class="pg-title">سلسلة محاضرات المهندسين</div><div class="pg-desc">لقاءات دورية مع مهندسين من الصناعة وخريجين ناجحين — تجارب حقيقية ومسارات مهنية متنوعة.</div></div>
+  </div>
+</section>
+
+<section id="plan" class="even">
+  <div class="sec-head">
+    <div class="sec-tag">خطة التنفيذ</div>
+    <h2 class="sec-title">٦ مراحل — ٣٦٥ يومًا من العمل</h2>
+    <div class="sep"></div>
+  </div>
+  <div class="plan-grid">
+    <div class="pl-card"><div class="pl-num">٠٠</div><div class="pl-icon">🏗️</div><div class="pl-name">التأسيس والبنية</div><div class="pl-desc">الهوية البصرية والهيكل التنظيمي وتأسيس اللجان والحضور الرقمي على منصات التواصل الاجتماعي.</div><div class="pl-meta"><span class="pl-tag d">الأيام ١–٣٠</span><span class="pl-tag b">٢٥٠–٥٥٠ د.ل</span></div></div>
+    <div class="pl-card"><div class="pl-num">٠١</div><div class="pl-icon">🚀</div><div class="pl-name">الإطلاق الرسمي</div><div class="pl-desc">منتدى بداية الفصل وإعلان انطلاق الاتحاد رسميًا أمام جميع طلاب القسم وأعضاء هيئة التدريس.</div><div class="pl-meta"><span class="pl-tag d">الأيام ٣١–٦٠</span><span class="pl-tag b">٧٥٠–٩٠٠ د.ل</span></div></div>
+    <div class="pl-card"><div class="pl-num">٠٢</div><div class="pl-icon">🎯</div><div class="pl-name">بناء القدرات</div><div class="pl-desc">ورش التطوير الذاتي لأعضاء النوادي وقادة الاتحاد لضمان جودة التنفيذ في المراحل القادمة.</div><div class="pl-meta"><span class="pl-tag d">الأيام ٦١–١٢٠</span><span class="pl-tag b">٦٠٠–٧٠٠ د.ل</span></div></div>
+    <div class="pl-card"><div class="pl-num">٠٣</div><div class="pl-icon">🎤</div><div class="pl-name">الفعاليات العامة</div><div class="pl-desc">البرامج التقنية والمحاضرات وورش العمل المفتوحة لجميع طلاب القسم بمشاركة المهندسين والمختصين.</div><div class="pl-meta"><span class="pl-tag d">الأيام ١٢١–٢١٠</span><span class="pl-tag b">١٩٨٠–٢١٨٠ د.ل</span></div></div>
+    <div class="pl-card"><div class="pl-num">٠٤</div><div class="pl-icon">🏭</div><div class="pl-name">الزيارات الميدانية</div><div class="pl-desc">أربع زيارات لمنشآت صناعية حقيقية تُتيح للطلاب تجربة بيئة العمل الهندسي مباشرة في الميدان.</div><div class="pl-meta"><span class="pl-tag d">الأيام ١٥١–٢٤٠</span><span class="pl-tag b">٢٨٠٠ د.ل</span></div></div>
+    <div class="pl-card"><div class="pl-num">٠٥</div><div class="pl-icon">🏆</div><div class="pl-name">الفعاليات الكبرى</div><div class="pl-desc">مسابقة الابتكار ويوم البحث العلمي وقمة المسار المهني ومعسكر المحاكاة — قمة النشاط السنوي للاتحاد.</div><div class="pl-meta"><span class="pl-tag d">الأيام ٢٤١–٣٦٥</span><span class="pl-tag b">١٣٢٠٠ د.ل</span></div></div>
+  </div>
+</section>
+
+<section id="budget" class="odd">
+  <div class="sec-head">
+    <div class="sec-tag">الخطة المالية</div>
+    <h2 class="sec-title">الميزانية السنوية الشاملة</h2>
+    <div class="sep"></div>
+  </div>
+  <div class="bwrap">
+    <div class="b-rows">
+      <div class="b-row"><div class="b-lbl">التأسيس والإطلاق</div><div class="b-bar"><div class="b-fill" style="background:linear-gradient(90deg,#1b3d5f,#3c7bbf)" data-w="10"></div></div><div class="b-amt">~١٤٥٠ د.ل</div></div>
+      <div class="b-row"><div class="b-lbl">بناء القدرات</div><div class="b-bar"><div class="b-fill" style="background:linear-gradient(90deg,#7a4f2d,#c98a52)" data-w="5"></div></div><div class="b-amt">~٦٥٠ د.ل</div></div>
+      <div class="b-row"><div class="b-lbl">الفعاليات العامة</div><div class="b-bar"><div class="b-fill" style="background:linear-gradient(90deg,#2a5f8f,#3c7bbf)" data-w="14"></div></div><div class="b-amt">~٢٠٨٠ د.ل</div></div>
+      <div class="b-row"><div class="b-lbl">الزيارات الميدانية</div><div class="b-bar"><div class="b-fill" style="background:linear-gradient(90deg,#a06538,#c98a52)" data-w="18"></div></div><div class="b-amt">~٢٨٠٠ د.ل</div></div>
+      <div class="b-row"><div class="b-lbl">الفعاليات الكبرى</div><div class="b-bar"><div class="b-fill" style="background:linear-gradient(90deg,#1b3d5f,#2a5f8f)" data-w="100"></div></div><div class="b-amt">~١٣٢٠٠ د.ل</div></div>
+    </div>
+    <div class="b-tots">
+      <div class="b-tot main"><div class="b-tlbl">إجمالي التكلفة</div><div class="b-tval">١٦٦١٠ – ١٩٣١٠ د.ل</div><div class="b-tnote">دينار ليبي — العام الدراسي ٢٠٢٥–٢٠٢٦</div></div>
+      <div class="b-tot sec"><div class="b-tlbl">الإيرادات المتوقعة</div><div class="b-tval">٤٨٠٠ – ٥٨٠٠ د.ل</div><div class="b-tnote">رسوم + رعاية شركات + تبرعات خريجين</div></div>
+      <div class="b-tot sec"><div class="b-tlbl">الصافي المطلوب</div><div class="b-tval">١١٣١٠ – ١٤٠١٠ د.ل</div><div class="b-tnote">جامعة + إدارة القسم + شركات راعية</div></div>
+      <div class="b-tot grn"><div class="b-tlbl">الاكتفاء الذاتي المستهدف</div><div class="b-tval">٣٠ – ٤٠٪</div><div class="b-tnote">من إجمالي تكاليف الفعاليات</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="kpis" class="alt">
+  <div class="sec-head">
+    <div class="sec-tag">مؤشرات الأداء</div>
+    <h2 class="sec-title">كيف نقيس نجاح الاتحاد؟</h2>
+    <div class="sep"></div>
+  </div>
+  <div class="kpi-grid">
+    <div class="kp"><div class="kp-icon">👥</div><div class="kp-num">٣٠٠</div><div class="kp-lbl">طالب مستفيد</div><div class="kp-sub">الهدف السنوي</div></div>
+    <div class="kp"><div class="kp-icon">📊</div><div class="kp-num">٦٥٪</div><div class="kp-lbl">معدل الحضور</div><div class="kp-sub">لكل فعالية</div></div>
+    <div class="kp"><div class="kp-icon">⭐</div><div class="kp-num">٤/٥</div><div class="kp-lbl">رضا المشاركين</div><div class="kp-sub">استبيانات ما بعد الفعالية</div></div>
+    <div class="kp"><div class="kp-icon">🏭</div><div class="kp-num">٥</div><div class="kp-lbl">شراكة صناعية</div><div class="kp-sub">شركات ومنشآت</div></div>
+    <div class="kp"><div class="kp-icon">📱</div><div class="kp-num">٥٠٠+</div><div class="kp-lbl">متابع رقمي</div><div class="kp-sub">بنهاية العام</div></div>
+    <div class="kp"><div class="kp-icon">📁</div><div class="kp-num">١٠٠٪</div><div class="kp-lbl">معدل التوثيق</div><div class="kp-sub">لجميع الفعاليات</div></div>
+  </div>
+</section>
+
+<section id="leadership" class="even">
+  <div class="sec-head">
+    <div class="sec-tag">قيادة الاتحاد</div>
+    <h2 class="sec-title">رئيس الاتحاد</h2>
+    <div class="sep"></div>
+  </div>
+  <div class="lead-card">
+    <div class="lead-ring">س</div>
+    <div class="lead-name">سراج الدين</div>
+    <div class="lead-role">رئيس اتحاد طلبة — قسم الهندسة الكيميائية</div>
+    <p class="lead-bio">طالب هندسة كيميائية في جامعة بنغازي، يقود اتحاد طلبة القسم بهدف بناء بيئة طلابية احترافية تُمكّن كل طالب من تحقيق أقصى إمكاناته الأكاديمية والمهنية.<br><br>يؤمن بأن الاتحاد الجيد لا يُقاس بعدد الفعاليات، بل بأثرها الحقيقي على الطلاب وعلى قدرتهم على دخول سوق العمل بثقة واستعداد.</p>
+    <a href="https://t.me/Chemical_engineer_Serageldin" class="lead-contact" target="_blank">📩 تواصل مباشرة</a>
+  </div>
+</section>
+
+<section id="cta">
+  <div class="sec-head">
+    <div class="sec-tag">انضم إلينا</div>
+    <h2 class="sec-title">الاتحاد هو ما نبنيه معًا</h2>
+    <div class="sep"></div>
+  </div>
+  <p class="cta-desc">كل طالب في القسم هو جزء من هذا الاتحاد —<br>الفرصة موجودة لمن يأخذها بجدية ويبني شيئًا يستحق أن يُذكر.</p>
+  <div class="cta-btns">
+    <a href="https://t.me/chemclub_uob" class="btn-w" target="_blank">📱 قناة الاتحاد على تيليجرام</a>
+    <a href="https://t.me/Chemical_engineer_Serageldin" class="btn-ow" target="_blank">تواصل مع رئيس الاتحاد</a>
+  </div>
+</section>
+
+<footer>
+  <div>
+    <div class="ft-logo">اتحاد طلبة قسم الهندسة الكيميائية</div>
+    <div class="ft-sub">جامعة بنغازي — كلية الهندسة — العام الدراسي ٢٠٢٥–٢٠٢٦</div>
+  </div>
+  <div class="ft-handle">@chemclub_uob</div>
+</footer>
+
+<script>
+const cv=document.getElementById('c'),x=cv.getContext('2d');
+function rs(){cv.width=innerWidth;cv.height=innerHeight}rs();
+window.addEventListener('resize',rs);
+const ns=Array.from({length:60},()=>({x:Math.random()*cv.width,y:Math.random()*cv.height,vx:(Math.random()-.5)*.32,vy:(Math.random()-.5)*.32,r:Math.random()*1.7+.5,a:Math.random()*.15+.04}));
+function draw(){
+  x.clearRect(0,0,cv.width,cv.height);
+  for(let i=0;i<ns.length;i++)for(let j=i+1;j<ns.length;j++){const dx=ns[i].x-ns[j].x,dy=ns[i].y-ns[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<125){x.beginPath();x.moveTo(ns[i].x,ns[i].y);x.lineTo(ns[j].x,ns[j].y);x.strokeStyle=`rgba(42,95,143,${.065*(1-d/125)})`;x.lineWidth=.55;x.stroke();}}
+  ns.forEach(n=>{n.x+=n.vx;n.y+=n.vy;if(n.x<0)n.x=cv.width;if(n.x>cv.width)n.x=0;if(n.y<0)n.y=cv.height;if(n.y>cv.height)n.y=0;x.beginPath();x.arc(n.x,n.y,n.r,0,Math.PI*2);x.fillStyle=`rgba(27,61,95,${n.a})`;x.fill();});
+  requestAnimationFrame(draw);
+}
+draw();
+window.addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('on',scrollY>50)});
+function cu(el,t){let v=0,s=t/110;const tm=setInterval(()=>{v+=s;if(v>=t){el.textContent=t;clearInterval(tm);}else el.textContent=Math.floor(v);},16)}
+new IntersectionObserver(en=>{en.forEach(e=>{if(e.isIntersecting)document.querySelectorAll('[data-count]').forEach(el=>cu(el,+el.dataset.count))})},{threshold:.3}).observe(document.getElementById('hero'));
+const ro=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)setTimeout(()=>{e.target.classList.add('v');e.target.querySelectorAll('.b-fill').forEach(f=>setTimeout(()=>f.style.width=f.dataset.w+'%',120))},+e.target.dataset.d||0)})},{threshold:.1});
+document.querySelectorAll('.a-card,.srv-card,.pg-card,.pl-card,.b-row,.b-tot,.kp').forEach((el,i)=>{el.dataset.d=i*50;ro.observe(el)});
+new IntersectionObserver(en=>{en.forEach(e=>{if(e.isIntersecting)e.target.querySelectorAll('.b-fill').forEach(f=>setTimeout(()=>f.style.width=f.dataset.w+'%',180))})},{threshold:.2}).observe(document.getElementById('budget'));
+document.querySelectorAll('.ptab').forEach(tb=>{tb.addEventListener('click',()=>{document.querySelectorAll('.ptab').forEach(t=>t.classList.remove('on'));tb.classList.add('on');const cat=tb.dataset.c;document.querySelectorAll('.pg-card').forEach(card=>{if(cat==='all'||card.dataset.c===cat){card.style.display='';setTimeout(()=>{card.style.opacity='1';card.style.transform='translateY(0)'},10);}else{card.style.opacity='0';card.style.transform='translateY(10px)';setTimeout(()=>card.style.display='none',260);}})})});
+</script>
+</body>
+</html>
